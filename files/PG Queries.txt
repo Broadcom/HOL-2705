@@ -1,0 +1,27 @@
+-- Insert into departments
+INSERT INTO departments (department_name) VALUES
+('Sales'),
+('Marketing'),
+('Engineering'),
+('Human Resources');
+
+-- Insert into employees
+INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_title, salary, department_id) VALUES 
+('John', 'Doe', 'john.doe@example.com', '123-456-7890', '2020-01-15', 'Sales Manager', 75000.00, 5),
+('Jane', 'Smith', 'jane.smith@example.com', '987-654-3210', '2019-03-20', 'Marketing Specialist', 60000.00, 6), 
+('Peter', 'Jones', 'peter.jones@example.com', '555-123-4567', '2021-06-01', 'Software Engineer', 90000.00, 7), 
+('Mary', 'Brown', 'mary.brown@example.com', '111-222-3333', '2018-09-10', 'HR Generalist', 55000.00, 8);
+
+-- Insert into projects
+INSERT INTO projects (project_name, start_date, end_date, budget) VALUES
+('Website Redesign', '2023-01-01', '2023-06-30', 50000.00),
+('New Product Launch', '2024-03-15', NULL, 100000.00),
+('Database Migration', '2023-11-01', '2024-02-28', 75000.00);
+
+-- Insert into employee_projects
+INSERT INTO employee_projects (employee_id, project_id) VALUES 
+(5, 4),
+(6, 4),
+(7, 5),
+(7, 6),
+(8, 5);
