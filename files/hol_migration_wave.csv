@@ -1,4 +1,0 @@
-vc_instance_uuid,vm_moid,app_name,migration_wave_model_key,migration_wave_name,mobility_group_model_key,mobility_group_name
-b2876d42-43b5-4bd7-b7f9-3cbd21c791e2,vm-5055,app03-web-01b,wave-key-02,HOL_Wave_Lab,mg-key-01,app03-web-01b-RAV
-b2876d42-43b5-4bd7-b7f9-3cbd21c791e2,vm-3002,app01-web-01b,wave-key-02,HOL_Wave_Lab,mg-key-02,app0102-webservers-HAV
-b2876d42-43b5-4bd7-b7f9-3cbd21c791e2,vm-3001,app02-web-01b,wave-key-02,HOL_Wave_Lab,mg-key-02,app0102-webservers-HAV
