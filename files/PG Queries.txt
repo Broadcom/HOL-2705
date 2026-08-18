@@ -1,0 +1,61 @@
+-- Create tables
+CREATE TABLE departments (
+    dept_id SERIAL PRIMARY KEY,
+    dept_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employees (
+    emp_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(12) NOT NULL,
+    hire_date VARCHAR(10) NOT NULL,
+    job_title VARCHAR(20) NOT NULL,
+    dept_id INT REFERENCES departments(dept_id),
+    salary NUMERIC(10, 2)
+);
+
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    project_name VARCHAR(100) NOT NULL,
+    start_date VARCHAR(10) NULL, 
+    end_date VARCHAR(10) NULL, 
+    budget NUMERIC(12, 2)
+);
+
+CREATE TABLE employee_projects (
+    emp_id INT REFERENCES employees(emp_id),
+    project_id INT REFERENCES projects(project_id),
+    PRIMARY KEY (emp_id, project_id)
+);
+
+
+
+-- Insert into departments
+INSERT INTO departments (dept_name) VALUES
+('Sales'),
+('Marketing'),
+('Engineering'),
+('Human Resources');
+
+-- Insert into employees
+INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_title, salary, dept_id) VALUES 
+('John', 'Doe', 'john.doe@example.com', '123-456-7890', '2020-01-15', 'Sales Manager', 75000.00, 1),
+('Jane', 'Smith', 'jane.smith@example.com', '987-654-3210', '2019-03-20', 'Marketing Specialist', 60000.00, 2), 
+('Peter', 'Jones', 'peter.jones@example.com', '555-123-4567', '2021-06-01', 'Software Engineer', 90000.00, 3), 
+('Mary', 'Brown', 'mary.brown@example.com', '111-222-3333', '2018-09-10', 'HR Generalist', 55000.00, 4);
+
+-- Insert into projects
+INSERT INTO projects (project_name, start_date, end_date, budget) VALUES
+('Website Redesign', '2023-01-01', '2023-06-30', 50000.00),
+('New Product Launch', '2024-03-15', NULL, 100000.00),
+('Database Migration', '2023-11-01', '2024-02-28', 75000.00);
+
+-- Insert into employee_projects
+INSERT INTO employee_projects (emp_id, project_id) VALUES 
+(1, 1),
+(2, 1),
+(3, 2),
+(3, 3),
+(4, 3);
