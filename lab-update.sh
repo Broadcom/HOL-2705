@@ -11,7 +11,19 @@
 # Source the .bashrc file for settings/paths/etc...
 . /home/holuser/.bashrc
 # Insert your custom code here:
+# the root password on dsm-01a and dsm-01b were set to never. This generates an Global Alert in the DSM Dashboard. 
+# We can check to see if the pw is still set to never and if so, set it to 9999:
+dsm_01b_root_expires=$(sshpass -f /home/holuser/creds.txt ssh -q -o StrictHostKeyChecking=accept-new root@dsm-01b.site-b.vcf.lab "chage -l root" 2>/dev/null | awk -F':' '/Password expires/ {print $2}' | xargs)
 
+if [ "${dsm_01b_root_expires}" == "never" ]; then
+    sshpass -f /home/holuser/creds.txt ssh -q -o StrictHostKeyChecking=accept-new root@dsm-01b.site-b.vcf.lab "chage -M 9999 root" 2>/dev/null
+fi
+
+dsm_01a_root_expires=$(sshpass -f /home/holuser/creds.txt ssh -q -o StrictHostKeyChecking=accept-new root@dsm-01a.site-a.vcf.lab "chage -l root" 2>/dev/null | awk -F':' '/Password expires/ {print $2}' | xargs)
+
+if [ "${dsm_01a_root_expires}" == "never" ]; then
+    sshpass -f /home/holuser/creds.txt ssh -q -o StrictHostKeyChecking=accept-new root@dsm-01a.site-a.vcf.lab "chage -M 9999 root" 2>/dev/null
+fi
 
 # Example to echo text into file on Console VM. 
 # NOTE: when this script runs, /lmchol is mounted to the "/" of the Console VM
