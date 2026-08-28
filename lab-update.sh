@@ -25,6 +25,10 @@ if [ "${dsm_01a_root_expires}" == "never" ]; then
     sshpass -f /home/holuser/creds.txt ssh -q -o StrictHostKeyChecking=accept-new root@dsm-01a.site-a.vcf.lab "chage -M 9999 root" 2>/dev/null
 fi
 
+if [ -f /lmchol/home/holuser/Documents/files/vcf-inspector-linux-amd64 ]; then
+    chmod +x /lmchol/home/holuser/Documents/files/vcf-inspector-linux-amd64
+fi
+
 # Example to echo text into file on Console VM. 
 # NOTE: when this script runs, /lmchol is mounted to the "/" of the Console VM
 # echo "Functional Testing!" > /lmchol/home/holuser/Documents/FT.txt
